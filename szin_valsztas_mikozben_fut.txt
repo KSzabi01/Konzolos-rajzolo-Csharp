@@ -1,0 +1,19 @@
+
+Console.WriteLine("Írj valamit!(F1-F5: színváltás)");
+
+while (true)
+{
+    var szinValszto = Console.ReadKey(true);
+
+
+    switch (szinValszto.Key)
+    {
+        case ConsoleKey.F1: Console.ForegroundColor = ConsoleColor.White; continue;
+        case ConsoleKey.F2: Console.ForegroundColor = ConsoleColor.Red; continue;
+        case ConsoleKey.F3: Console.ForegroundColor = ConsoleColor.Blue; continue;
+        case ConsoleKey.F4: Console.ForegroundColor = ConsoleColor.Yellow; continue;
+        case ConsoleKey.F5: Console.ForegroundColor = ConsoleColor.Green; continue;
+    }
+
+    Console.Write(szinValszto.KeyChar);
+}
