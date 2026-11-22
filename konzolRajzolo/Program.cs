@@ -1,19 +1,38 @@
 // Konzolos próbaprogram. Windows Terminalban vagy konzolablakban futtasd.
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-static void FoMenu()
+string drawColor = "cián";
+string drawPickupState = "felemelve";
+
+void FoMenu()
 {
     Console.Clear();
     Console.WriteLine($"KONZOLOS RAJZOLÓ {"|".PadLeft(8)} RAJZLAP");
     Console.WriteLine("|".PadLeft(25));
-    Console.WriteLine($"  Karakter választás {{U}}|");
-    Console.WriteLine($"  Szín választása {{C}} {"|".PadLeft(3)}");
-    Console.WriteLine($"  Minta betöltése {{L}} {"|".PadLeft(3)}");
-    Console.WriteLine($"  Ugrás középre {{D}} {"|".PadLeft(5)}");
-    Console.WriteLine($"  2. saját funkció {"|".PadLeft(6)}");
-    Console.WriteLine($"  Kilépés {{ESC}} {"|".PadLeft(9)}");
+    Console.WriteLine($" Karakter választás {{U}} |");
+    Console.WriteLine($" Szín választása {{C}} {"|".PadLeft(4)}");
+    Console.WriteLine($" Minta betöltése {{L}} {"|".PadLeft(4)}");
+    Console.WriteLine($" Ugrás középre {{D}} {"|".PadLeft(6)}");
+    Console.WriteLine($" 2. saját funkció {"|".PadLeft(7)}");
+    Console.WriteLine("|".PadLeft(25));
+    Console.WriteLine($" Kilépés {{X}} {"|".PadLeft(12)}");
     Console.WriteLine("|".PadLeft(25));
     // Console.WriteLine($"Fel/Le: választás {"|".PadLeft(7)}");
+}
+
+void RajzMenu()
+{
+    Console.Clear();
+    Console.WriteLine($"KONZOLOS RAJZOLÓ {"|".PadLeft(8)} RAJZLAP");
+    Console.WriteLine("|".PadLeft(25));
+    Console.WriteLine($" Menü {{M}} {"|".PadLeft(15)}");
+    Console.WriteLine($" Kilépés {{X}} {"|".PadLeft(12)}");
+    Console.WriteLine("|".PadLeft(25));
+    Console.WriteLine($" Pozíció ({"00"}, {"00"}) {"|".PadLeft(7)}");
+    Console.WriteLine($" Karakter {"#"} {"|".PadLeft(13)}");
+    Console.WriteLine($" Szín {drawColor} {"|".PadLeft(18 - drawColor.Length)}");
+    Console.WriteLine($" Eszköz {drawPickupState}{"|".PadLeft(17-drawPickupState.Length)}");
+    Console.WriteLine("|".PadLeft(25));
 }
 
 if (Console.IsInputRedirected || Console.IsOutputRedirected)
@@ -29,6 +48,7 @@ if (Console.WindowWidth < 76 || Console.WindowHeight < 23)
 }
 
 FoMenu();
+RajzMenu();
 Console.WriteLine("Konzolpróba | F1: színes jel | B: hang | L: fájl | Esc: kilépés");
 Console.WriteLine("Az alsó sor az utolsó leütött billentyűt mutatja.");
 bool fut = true;
