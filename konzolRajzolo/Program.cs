@@ -3,9 +3,18 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 // letéve kurzor ■
 // felemelt kurzor □
-string drawColor = "Fehér";
+string drawColor = "fehér";
 string drawPickupState = "felemelve";
 char drawChar = '#';
+int positionX = 3;
+int positionY = 3;
+string[] drawBoard = new string[7];
+for (int i = 0; i < 7; i++)
+{
+    drawBoard[i] = new string(' ', 7);
+}
+
+bool fut = true;
 
 void MainMenu()
 {
@@ -31,7 +40,7 @@ void StatusMenu()
     Console.WriteLine($" Menü {{M}} {"|".PadLeft(15)}");
     Console.WriteLine($" Kilépés {{X}} {"|".PadLeft(12)}");
     Console.WriteLine("|".PadLeft(25));
-    Console.WriteLine($" Pozíció ({"00"}, {"00"}) {"|".PadLeft(7)}");
+    Console.WriteLine($" Pozíció ({positionX}, {positionY}) {"|".PadLeft(9)}");
     Console.WriteLine($" Karakter {"#"} {"|".PadLeft(13)}");
     Console.WriteLine($" Szín {drawColor} {"|".PadLeft(18 - drawColor.Length)}");
     Console.WriteLine($" Eszköz {drawPickupState}{"|".PadLeft(17-drawPickupState.Length)}");
@@ -56,37 +65,37 @@ void ColorMenu()
         {
             case ConsoleKey.D1:
                 Console.ForegroundColor = ConsoleColor.White;
-                drawColor = "Fehér";
+                drawColor = "fehér";
                 pickingColor = false;
                 break;
             case ConsoleKey.D2:
                 Console.ForegroundColor = ConsoleColor.Red;
-                drawColor = "Piros";
+                drawColor = "piros";
                 pickingColor = false;
                 break;
             case ConsoleKey.D3:
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                drawColor = "Sárga";
+                drawColor = "sárga";
                 pickingColor = false;
                 break;
             case ConsoleKey.D4:
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                drawColor = "Magenta";
+                drawColor = "magenta";
                 pickingColor = false;
                 break;
             case ConsoleKey.D5:
                 Console.ForegroundColor = ConsoleColor.Green;
-                drawColor = "Zöld";
+                drawColor = "zöld";
                 pickingColor = false;
                 break;
             case ConsoleKey.D6:
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                drawColor = "Cián";
+                drawColor = "cián";
                 pickingColor = false;
                 break;
             case ConsoleKey.D7:
                 Console.ForegroundColor = ConsoleColor.Blue;
-                drawColor = "Kék";
+                drawColor = "kék";
                 pickingColor = false;
                 break;
             default:
@@ -157,6 +166,116 @@ void CharacterMenu()
     }
 }
 
+void PlaceChar(string[] boardToChange, int placeX, int placeY, char drawingChar)
+{
+    boardToChange[placeY] = boardToChange[placeY].Substring(0, placeX) + drawingChar + boardToChange[placeY].Substring(placeX + 1);
+}
+
+void ShowBoard(string[] boardToShow, int startX, int startY)
+{
+    for (int row = 0; row < 7; row++)
+    {
+        Console.SetCursorPosition(startX, startY + row);
+        Console.Write(boardToShow[row]);
+    }
+}
+
+void DrawMode(string[] boardInput, char inputDrawingChar)
+{
+    int startX = 26;
+    int startY = 2;
+    int x = 3;
+    int y = 3;
+    bool penDown = false;
+    bool drawing = true;
+
+    Console.CursorVisible = false;
+    while (drawing)
+    {
+        StatusMenu();
+        ShowBoard(boardInput, startX, startY);
+        Console.SetCursorPosition(startX + x, startY + y);
+        if (penDown)
+        {
+            Console.Write('■');
+        }
+        else
+        {
+            Console.Write('□');
+        }
+
+        ConsoleKey key = Console.ReadKey(true).Key;
+
+        int newX = x;
+        int newY = y;
+        bool wantsToMove = false;
+
+        switch (key)
+        {
+            case ConsoleKey.UpArrow:
+                newY = y - 1;
+                wantsToMove = true;
+                break;
+            case ConsoleKey.DownArrow:
+                newY = y + 1;
+                wantsToMove = true;
+                break;
+            case ConsoleKey.LeftArrow:
+                newX = x - 1;
+                wantsToMove = true;
+                break;
+            case ConsoleKey.RightArrow:
+                newX = x + 1;
+                wantsToMove = true;
+                break;
+            case ConsoleKey.Spacebar:
+                if (penDown)
+                {
+                    penDown = false;
+                    drawPickupState = "felemelve";
+                }
+                else
+                {
+                    penDown = true;
+                    drawPickupState = "letéve";
+                    PlaceChar(boardInput, x, y, inputDrawingChar);
+                }
+                break;
+            case ConsoleKey.M:
+                drawing = false;
+                MainMenu();
+                ShowBoard(drawBoard, 26, 2);
+                break;
+            case ConsoleKey.X:
+                drawing = false;
+                fut = false;
+                break;
+        }
+
+        if (wantsToMove)
+        {
+            if (newX < 0 || newX > 6 || newY < 0 || newY > 6)
+            {
+                if (OperatingSystem.IsWindows())
+                    Console.Beep(800, 120);
+                else
+                    Console.Write("\a");
+            }
+            else
+            {
+                positionX = x = newX;
+                positionY = y = newY;
+                if (penDown)
+                {
+                    PlaceChar(boardInput, x, y, inputDrawingChar);
+                }
+            }
+        }
+    }
+
+    ShowBoard(boardInput, startX, startY);
+}
+
 if (Console.IsInputRedirected || Console.IsOutputRedirected)
 {
     Console.WriteLine("A próbához nyiss interaktív konzolablakot.");
@@ -172,7 +291,8 @@ MainMenu();
 // StatusMenu();
 // Console.WriteLine("Konzolpróba | F1: színes jel | B: hang | L: fájl | Esc: kilépés");
 // Console.WriteLine("Az alsó sor az utolsó leütött billentyűt mutatja.");
-bool fut = true;
+
+
 while (fut)
 {
     ConsoleKey billentyu = Console.ReadKey(true).Key;
@@ -184,10 +304,15 @@ while (fut)
         case ConsoleKey.U:
             CharacterMenu();
             MainMenu();
+            ShowBoard(drawBoard, 26, 2);
             break;
         case ConsoleKey.C:
             ColorMenu();
             MainMenu();
+            ShowBoard(drawBoard, 26, 2);
+            break;
+        case ConsoleKey.D:
+            DrawMode(drawBoard, drawChar);
             break;
         case ConsoleKey.K:
             Console.SetCursorPosition(26, 4); // oszlop, majd sor
