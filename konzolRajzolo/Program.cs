@@ -1,8 +1,11 @@
 // Konzolos próbaprogram. Windows Terminalban vagy konzolablakban futtasd.
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+// letéve kurzor ■
+// felemelt kurzor □
 string drawColor = "Fehér";
 string drawPickupState = "felemelve";
+char drawChar = '#';
 
 void MainMenu()
 {
@@ -98,6 +101,62 @@ void ColorMenu()
     }
 }
 
+void CharacterMenu()
+{
+    Console.Clear();
+    Console.WriteLine("# {1}");
+    Console.WriteLine("@ {2}");
+    Console.WriteLine(": {3}");
+    Console.WriteLine("; {4}");
+    Console.WriteLine("? {5}");
+    Console.WriteLine("! {6}");
+    Console.WriteLine("█ {7}");
+    bool pickingChar = true;
+    while (pickingChar)
+    {
+        ConsoleKey colorKey = Console.ReadKey(true).Key;
+        switch (colorKey)
+        {
+            case ConsoleKey.D1:
+                drawChar = '#';
+                pickingChar = false;
+                break;
+            case ConsoleKey.D2:
+                drawChar = '@';
+                pickingChar = false;
+                break;
+            case ConsoleKey.D3:
+                drawChar = ':';
+                pickingChar = false;
+                break;
+            case ConsoleKey.D4:
+                drawChar = ';';
+                pickingChar = false;
+                break;
+            case ConsoleKey.D5:
+                drawChar = '?';
+                pickingChar = false;
+                break;
+            case ConsoleKey.D6:
+                drawChar = '!';
+                pickingChar = false;
+                break;
+            case ConsoleKey.D7:
+                drawChar = '█';
+                pickingChar = false;
+                break;
+            default:
+                Console.SetCursorPosition(0, 11);
+                Console.WriteLine("Nincs ilyen opció");
+                if (OperatingSystem.IsWindows())
+                    Console.Beep(800, 120);
+                else
+                    Console.Write("\a");
+                break;
+        }
+    }
+}
+
 if (Console.IsInputRedirected || Console.IsOutputRedirected)
 {
     Console.WriteLine("A próbához nyiss interaktív konzolablakot.");
@@ -123,6 +182,8 @@ while (fut)
     switch (billentyu)
     {
         case ConsoleKey.U:
+            CharacterMenu();
+            MainMenu();
             break;
         case ConsoleKey.C:
             ColorMenu();
