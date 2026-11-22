@@ -1,5 +1,20 @@
 // Konzolos próbaprogram. Windows Terminalban vagy konzolablakban futtasd.
-// Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+static void FoMenu()
+{
+    Console.Clear();
+    Console.WriteLine($"KONZOLOS RAJZOLÓ {"|".PadLeft(8)} RAJZLAP");
+    Console.WriteLine("|".PadLeft(25));
+    Console.WriteLine($"  Karakter választás {{U}}|");
+    Console.WriteLine($"  Szín választása {{C}} {"|".PadLeft(3)}");
+    Console.WriteLine($"  Minta betöltése {{L}} {"|".PadLeft(3)}");
+    Console.WriteLine($"  Ugrás középre {{D}} {"|".PadLeft(5)}");
+    Console.WriteLine($"  2. saját funkció {"|".PadLeft(6)}");
+    Console.WriteLine($"  Kilépés {{ESC}} {"|".PadLeft(9)}");
+    Console.WriteLine("|".PadLeft(25));
+    // Console.WriteLine($"Fel/Le: választás {"|".PadLeft(7)}");
+}
 
 if (Console.IsInputRedirected || Console.IsOutputRedirected)
 {
@@ -13,7 +28,7 @@ if (Console.WindowWidth < 76 || Console.WindowHeight < 23)
     return;
 }
 
-Console.Clear();
+FoMenu();
 Console.WriteLine("Konzolpróba | F1: színes jel | B: hang | L: fájl | Esc: kilépés");
 Console.WriteLine("Az alsó sor az utolsó leütött billentyűt mutatja.");
 bool fut = true;
