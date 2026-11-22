@@ -15,9 +15,10 @@
 
 ## Munkanapló
 
-| Dátum | Ki  | Mi készült el vagy miben állapodtunk meg? | Következő lépés vagy commit |
-| ----- | --- | ----------------------------------------- | --------------------------- |
-| …     | …   | …                                         | …                           |
+| Dátum | Ki       | Mi készült el vagy miben állapodtunk meg? | Következő lépés vagy commit |
+| ----- | -------- | ----------------------------------------- | --------------------------- |
+| 11.22 | KSzabi01 | Menü, rajzolás, állapotjelző.             | színváltás finomítása       |
+| ...   | ...      | ...                                       | ...                         |
 
 ## Másik pár tesztje
 
@@ -29,6 +30,6 @@
 
 Aki használt AI-t, írja le a nevét, miben kért segítséget, és mit tanult meg belőle.
 
-- Név: …
-- Miben kértem segítséget: …
-- Mit tanultam meg: …
+- Név: KSzabi01
+- Miben kértem segítséget: Lista létrehozása.
+- Mit tanultam meg: Hogyan lehet létrehozni egy fix hosszúságú listát.
