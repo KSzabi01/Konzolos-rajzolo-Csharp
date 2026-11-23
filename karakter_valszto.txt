@@ -1,0 +1,20 @@
+char karakter = '#';
+
+while (true)
+{
+    Console.WriteLine($"Jelenlegi karakter: '{karakter}'");
+    Console.Write("Adj meg új karaktert: ");
+    string? bemenet = Console.ReadLine();
+
+
+    if (string.IsNullOrEmpty(bemenet))
+    {
+        
+        Console.Beep(800, 120);
+        Console.WriteLine("Hiba: nem adtál meg karaktert!\n");
+        continue;
+    }
+    break;
+    karakter = bemenet[0];
+    Console.WriteLine($"A karakter sikeresen '{karakter}' értékre változott.\n");
+}
