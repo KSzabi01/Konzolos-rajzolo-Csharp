@@ -1,0 +1,153 @@
+/*
+
+RAJZLAP 
+  
+ 
+using System;
+using System.Text;
+
+Console.OutputEncoding = Encoding.UTF8;
+
+const int RajzlapSzelesseg = 48; // Rajzlap oszlopainak száma[cite: 1, 6]
+const int RajzlapMagassag = 18;  // Rajzlap sorainak száma[cite: 1]
+
+char[,] rajz = new char[RajzlapSzelesseg, RajzlapMagassag];
+ConsoleColor[,] szinek = new ConsoleColor[RajzlapSzelesseg, RajzlapMagassag];
+TorolRajzlapot();
+
+int cx = RajzlapSzelesseg / 2; // Kezdő középpont X[cite: 2]
+int cy = RajzlapMagassag / 2;  // Kezdő középpont Y[cite: 2]
+char aktKarakter = '#';
+ConsoleColor aktSzin = ConsoleColor.Cyan;
+string uzenet = "F1-F12: nyomda, Nyilak: mozgás, Esc: kilép";
+
+KirajzolRajzlapot();
+
+while (true)
+{
+    ConsoleKey key = Console.ReadKey(true).Key;
+
+    if (key == ConsoleKey.Escape)
+        break;
+
+    if (key is ConsoleKey.LeftArrow or ConsoleKey.RightArrow or ConsoleKey.UpArrow or ConsoleKey.DownArrow)
+    {
+        int nx = cx + (key == ConsoleKey.RightArrow ? 1 : key == ConsoleKey.LeftArrow ? -1 : 0);
+        int ny = cy + (key == ConsoleKey.DownArrow ? 1 : key == ConsoleKey.UpArrow ? -1 : 0);
+
+        if (nx < 0 || nx >= RajzlapSzelesseg || ny < 0 || ny >= RajzlapMagassag)
+        {
+            Hiba("Szélen túl"); // Kurzor és rajz változatlan marad[cite: 1]
+        }
+        else
+        {
+            cx = nx;
+            cy = ny;
+            uzenet = $"Középpont: ({cx}, {cy})";
+        }
+    }
+    else if (key >= ConsoleKey.F1 && key <= ConsoleKey.F12)
+    {
+        Nyomda(key); // Nyomda elhelyezése az aktuális (cx, cy) körül[cite: 2]
+    }
+    else
+    {
+        Hiba("Csak nyilak, F1-F12 vagy Esc");
+    }
+
+    KirajzolRajzlapot();
+}
+*/
+// Az F1-F12 billentyűkhez tartozó nyomdamintát helyezi el a rajzlapon[cite: 2]
+void Nyomda(ConsoleKey fKey)
+{
+    int idx = fKey - ConsoleKey.F1;     // 0..11[cite: 2]
+    int meret = (idx % 3) * 2 + 3;      // 3, 5 vagy 7[cite: 2]
+    int tipus = idx / 3;                // 0: X, 1: +, 2: rombuszkeret, 3: négyzetkeret[cite: 2]
+    int r = meret / 2;                  // Sugár/eltolás a középponttól (1, 2 vagy 3)
+
+    // Teljes befoglaló négyzet ellenőrzése a rajzolás előtt[cite: 2]
+    if (cx - r < 0 || cx + r >= RajzlapSzelesseg || cy - r < 0 || cy + r >= RajzlapMagassag)
+    {
+        Hiba("Kilóg a nyomda"); // Beep és változatlan rajz[cite: 1, 2]
+        return;
+    }
+
+    for (int dy = -r; dy <= r; dy++)
+    {
+        for (int dx = -r; dx <= r; dx++)
+        {
+            bool kell = tipus switch
+            {
+                0 => Math.Abs(dx) == Math.Abs(dy),          // X: két átló[cite: 2]
+                1 => dx == 0 || dy == 0,                     // Kereszt (+): középső sor és oszlop[cite: 2]
+                2 => Math.Abs(dx) + Math.Abs(dy) == r,       // Rombuszkeret: négy oldalfelező között[cite: 2]
+                3 => Math.Abs(dx) == r || Math.Abs(dy) == r, // Négyzetkeret: négy szélső vonal[cite: 2]
+                _ => false
+            };
+
+            if (kell)
+            {
+                rajz[cx + dx, cy + dy] = aktKarakter;
+                szinek[cx + dx, cy + dy] = aktSzin;
+            }
+        }
+    }
+
+    uzenet = $"{fKey} ({meret}x{meret}) kész";
+}
+/*
+
+ PROGRAM MÜKÖDÉSÉHEZ KELLÖ fUNKCIÓK
+
+
+
+// Üresre állítja a rajzlapot[cite: 2]
+void TorolRajzlapot()
+{
+    for (int x = 0; x < RajzlapSzelesseg; x++)
+        for (int y = 0; y < RajzlapMagassag; y++)
+        {
+            rajz[x, y] = ' ';
+            szinek[x, y] = ConsoleColor.Gray;
+        }
+}
+
+// Kiírja a rajzlapot és a látható kurzort a konzolra[cite: 1]
+void KirajzolRajzlapot()
+{
+    Console.Clear();
+    for (int y = 0; y < RajzlapMagassag; y++)
+    {
+        for (int x = 0; x < RajzlapSzelesseg; x++)
+        {
+            if (x == cx && y == cy)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write(rajz[x, y]);
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = szinek[x, y];
+                Console.Write(rajz[x, y]);
+                Console.ResetColor();
+            }
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine(uzenet);
+}
+
+// Hangjelzést és hibaüzenetet ad[cite: 1] 
+void Hiba(string szoveg)
+{
+    if (OperatingSystem.IsWindows())
+        Console.Beep(800, 120);
+    else
+        Console.Write("\a");
+
+    uzenet = "Hiba: " + szoveg;
+}
+*/

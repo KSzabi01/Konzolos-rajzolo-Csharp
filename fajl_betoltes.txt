@@ -1,0 +1,139 @@
+/*
+using System;
+using System.IO;
+using System.Text;
+
+Console.OutputEncoding = Encoding.UTF8;
+
+
+// szerintem ez jobb arány
+const int RajzlapSzelesseg = 48;
+const int RajzlapMagassag = 18;
+
+char[,] rajz = new char[RajzlapMagassag, RajzlapSzelesseg];
+ConsoleColor[,] szinek = new ConsoleColor[RajzlapMagassag, RajzlapSzelesseg];
+ConsoleColor aktSzin = ConsoleColor.Cyan;
+string uzenet = "";
+
+TorolRajzlapot();
+*/
+
+while (true)
+{
+    Console.Write("\nFájlnév (Enter: minta.txt, 'mégse'): ");
+    string? nev = Console.ReadLine()?.Trim();
+    if (string.Equals(nev, "mégse", StringComparison.OrdinalIgnoreCase))
+        break;
+
+    string fajlNev = string.IsNullOrEmpty(nev) ? "minta.txt" : nev;
+    string path = Path.IsPathRooted(fajlNev)
+        ? fajlNev
+        : Path.Combine(AppContext.BaseDirectory, fajlNev);
+
+    if (!File.Exists(path))
+    {
+        Hiba($"Nincs ilyen fájl ({path})");
+        continue;
+    }
+
+    string[] sorok;
+    try
+    {
+        sorok = File.ReadAllLines(path, Encoding.UTF8);
+    }
+    catch (Exception ex)
+    {
+        Hiba($"Nem olvasható: {ex.Message}");
+        continue;
+    }
+
+    if (sorok.Length == 0)
+    {
+        Hiba("A fájl üres");
+        continue;
+    }
+
+    int maxSor = rajz.GetLength(0);
+    int maxOszlop = rajz.GetLength(1);
+
+    if (sorok.Length > RajzlapMagassag || sorok.Length > maxSor)
+    {
+        Hiba("Nem fér el (túl sok sor)");
+        continue;
+    }
+
+    bool tulSzeles = false;
+    foreach (string sor in sorok)
+    {
+        if (sor.Length > RajzlapSzelesseg || sor.Length > maxOszlop)
+        {
+            tulSzeles = true;
+            break;
+        }
+    }
+
+    if (tulSzeles)
+    {
+        Hiba("Nem fér el (túl hosszú sor)");
+        continue;
+    }
+    /*
+     
+    PROGRAM MÜKÖDÉSÉHEZ KELLÖ fUNKCIÓK
+
+    TorolRajzlapot();
+
+    for (int y = 0; y < sorok.Length; y++)
+    {
+        for (int x = 0; x < sorok[y].Length; x++)
+        {
+            char c = sorok[y][x];
+            if (c != ' ')
+            {
+                rajz[y, x] = c;
+                szinek[y, x] = aktSzin;
+            }
+        }
+    }
+
+    uzenet = "";
+    KirajzolRajzlapot();
+    break;
+}
+
+void TorolRajzlapot()
+{
+    for (int y = 0; y < RajzlapMagassag; y++)
+        for (int x = 0; x < RajzlapSzelesseg; x++)
+        {
+            rajz[y, x] = ' ';
+            szinek[y, x] = ConsoleColor.Gray;
+        }
+}
+
+void KirajzolRajzlapot()
+{
+    Console.WriteLine();
+    for (int y = 0; y < RajzlapMagassag; y++)
+    {
+        for (int x = 0; x < RajzlapSzelesseg; x++)
+        {
+            Console.ForegroundColor = szinek[y, x];
+            Console.Write(rajz[y, x]);
+            Console.ResetColor();
+        }
+        Console.WriteLine();
+    }
+}
+
+void Hiba(string szoveg)
+{
+    if (OperatingSystem.IsWindows())
+        Console.Beep(800, 120);
+    else
+        Console.Write("\a");
+
+    uzenet = "Hiba: " + szoveg;
+    Console.WriteLine(uzenet);
+}
+    */
