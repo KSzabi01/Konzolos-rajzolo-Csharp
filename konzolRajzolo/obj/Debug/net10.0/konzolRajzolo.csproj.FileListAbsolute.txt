@@ -1,0 +1,15 @@
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\bin\Debug\net10.0\konzolRajzolo.exe
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\bin\Debug\net10.0\konzolRajzolo.deps.json
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\bin\Debug\net10.0\konzolRajzolo.runtimeconfig.json
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\bin\Debug\net10.0\konzolRajzolo.dll
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\bin\Debug\net10.0\konzolRajzolo.pdb
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\konzolRajzolo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\konzolRajzolo.AssemblyInfoInputs.cache
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\konzolRajzolo.AssemblyInfo.cs
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\konzolRajzolo.csproj.CoreCompileInputs.cache
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\konzolRajzolo.dll
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\refint\konzolRajzolo.dll
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\konzolRajzolo.pdb
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\konzolRajzolo.genruntimeconfig.cache
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\ref\konzolRajzolo.dll
+C:\Users\lipcs\Downloads\Konzolos-rajzolo-Csharp-K-branch(1)\Konzolos-rajzolo-Csharp-K-branch\konzolRajzolo\obj\Debug\net10.0\konzolRa.2CE83406.Up2Date
