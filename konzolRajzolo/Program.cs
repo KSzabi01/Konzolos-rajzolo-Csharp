@@ -34,7 +34,7 @@ void MainMenu()
     Console.WriteLine($" Szín választása {{C}} {"|".PadLeft(4)}");
     Console.WriteLine($" Minta betöltése {{L}} {"|".PadLeft(4)}");
     Console.WriteLine($" Rajzolás {{D}} {"|".PadLeft(11)}");
-    Console.WriteLine($" 2. saját funkció {"|".PadLeft(7)}");
+    Console.WriteLine($" 2 saját funkció {"|".PadLeft(8)}");
     Console.WriteLine("|".PadLeft(25));
     Console.WriteLine($" Kilépés {{X}} {"|".PadLeft(12)}");
     Console.WriteLine("|".PadLeft(25));
