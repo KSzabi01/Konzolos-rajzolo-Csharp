@@ -4,6 +4,9 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 // letéve kurzor ■
 // felemelt kurzor □
 
+Console.CursorVisible = false;
+
+
 const int RajzlapSzelesseg = 48;
 const int RajzlapMagassag = 18;
 
@@ -30,7 +33,7 @@ void MainMenu()
     Console.WriteLine($" Karakter választás {{U}} |");
     Console.WriteLine($" Szín választása {{C}} {"|".PadLeft(4)}");
     Console.WriteLine($" Minta betöltése {{L}} {"|".PadLeft(4)}");
-    Console.WriteLine($" Ugrás középre {{D}} {"|".PadLeft(6)}");
+    Console.WriteLine($" Rajzolás {{D}} {"|".PadLeft(11)}");
     Console.WriteLine($" 2. saját funkció {"|".PadLeft(7)}");
     Console.WriteLine("|".PadLeft(25));
     Console.WriteLine($" Kilépés {{X}} {"|".PadLeft(12)}");
@@ -419,7 +422,6 @@ void DrawMode(string[] boardInput, ConsoleColor[] colorsInput, char inputDrawing
     drawPickupState = "felemelve";
     uzenet = "";
 
-    Console.CursorVisible = false;
     while (drawing)
     {
         StatusMenu();

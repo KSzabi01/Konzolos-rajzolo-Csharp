@@ -9,7 +9,7 @@
 
 ## Közös megállapodások
 
-- A rajzlap mérete és helye: 7x7-es méret, a menühöz vertikálisan középen, és horizontalisan egy kevés padding-el
+- A rajzlap mérete és helye: 7x7-es méret
 - A két munkarész kapcsolódási pontja: …
 - A módosítások egyeztetése a main ágon: …
 
@@ -19,6 +19,7 @@
 | ----- | -------- | ----------------------------------------- | --------------------------- |
 | 11.22 | KSzabi01 | Menü, rajzolás, állapotjelző.             | színváltás finomítása       |
 | 11.24 | Lipcsei  | Nyomtatás,                                | Írás szín                   |
+| 11.24 | KSzabi01 | README, két fél összefűzése.              |                             |
 ## Másik pár tesztje
 
 - Tesztelt commit: …
